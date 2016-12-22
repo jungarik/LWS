@@ -31,15 +31,16 @@ namespace Lws.Web.Controllers
             values = valuesRepo.GetAll().Where(e => e.SensorSsn == ssn).ToList();
             return values;
         }
-
-        public Value GetLast(string ssn)
+        [HttpPost]
+        public void PostValues(Value value)
         {
-            return valuesRepo.GetAll().FirstOrDefault(e => e.SensorSsn == ssn);
+            if (ModelState.IsValid)
+            {
+                value.ServerDate = DateTime.Now;
+                valuesRepo.Create(value);
+                db.SaveChanges();
+            }
         }
-        //public IEnumerable<Value> PostValues(Value values)
-        //{
-        //    return valuesRepo.GetAll().Where(value => value.SensorSsn == id);
-        //}
 
     }
 }
