@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище LwsDBModelContainer" CdmEntityContainer="LwsDBEntities">
+    <EntitySetMapping Name="UserProfiles">
+      <EntityTypeMapping TypeName="LwsDBModel.UserProfile">
+        <MappingFragment StoreEntitySet="UserProfiles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="Region" ColumnName="Region" />
+          <ScalarProperty Name="AddressFst" ColumnName="AddressFst" />
+          <ScalarProperty Name="AddressSec" ColumnName="AddressSec" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="LwsDBModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Values">
+      <EntityTypeMapping TypeName="LwsDBModel.Value">
+        <MappingFragment StoreEntitySet="Values">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ServerDate" ColumnName="ServerDate" />
+          <ScalarProperty Name="SensorDate" ColumnName="SensorDate" />
+          <ScalarProperty Name="NumberOfNP" ColumnName="NumberOfNP" />
+          <ScalarProperty Name="NumberOfPP" ColumnName="NumberOfPP" />
+          <ScalarProperty Name="Meter1Value" ColumnName="Meter1Value" />
+          <ScalarProperty Name="Meter2Value" ColumnName="Meter2Value" />
+          <ScalarProperty Name="Meter3Value" ColumnName="Meter3Value" />
+          <ScalarProperty Name="SensorSsn" ColumnName="SensorSsn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sensors">
+      <EntityTypeMapping TypeName="IsTypeOf(LwsDBModel.Sensor)">
+        <MappingFragment StoreEntitySet="Sensors">
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="IsOptMeter3" ColumnName="IsOptMeter3" />
+          <ScalarProperty Name="IsOptMeter2" ColumnName="IsOptMeter2" />
+          <ScalarProperty Name="IsOptMeter1" ColumnName="IsOptMeter1" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="QrCode" ColumnName="QrCode" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Ssn" ColumnName="Ssn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

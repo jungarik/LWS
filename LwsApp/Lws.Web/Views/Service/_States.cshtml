@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Lws.Domain.State>
+
+@{
+    ViewBag.Title = "_States";
+}
+
+<div class="container">
+    <table class="table" style="background-color:white;">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.LastTimeUpdate)</th>
+            <th>@Html.DisplayNameFor(model => model.NextTimeUpdate)</th>
+            <th>@Html.DisplayNameFor(model => model.VoltLevel)</th>
+            <th>@Html.DisplayNameFor(model => model.CurrentBill)</th>
+            <th>@Html.DisplayNameFor(model => model.Error)</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.LastTimeUpdate)</td>
+                <td>@Html.DisplayFor(modelItem => item.NextTimeUpdate)</td>
+                <td>@Html.DisplayFor(modelItem => item.VoltLevel)</td>
+                <td>@Html.DisplayFor(modelItem => item.CurrentBill)</td>
+                <td>@Html.DisplayFor(modelItem => item.Error)</td>
+            </tr>
+        }
+    </table>
+</div>
+

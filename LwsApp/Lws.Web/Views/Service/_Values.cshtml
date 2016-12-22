@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Lws.Domain.Value>
+
+@{
+    ViewBag.Title = "_Values";
+}
+<div class="container">
+    <table class="table" style="background-color:white;">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.SensorDate)</th>
+            <th>@Html.DisplayNameFor(model => model.NumberOfNP)</th>
+            <th>@Html.DisplayNameFor(model => model.NumberOfPP)</th>
+            <th>@Html.DisplayNameFor(model => model.Meter1Value)</th>
+            <th>@Html.DisplayNameFor(model => model.Meter2Value)</th>
+            <th>@Html.DisplayNameFor(model => model.Meter3Value)</th>
+
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.SensorDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.NumberOfNP)</td>
+                <td>@Html.DisplayFor(modelItem => item.NumberOfPP)</td>
+                <td>@Html.DisplayFor(modelItem => item.Meter1Value)</td>
+                <td>@Html.DisplayFor(modelItem => item.Meter2Value)</td>
+                <td>@Html.DisplayFor(modelItem => item.Meter3Value)</td>
+            </tr>
+        }
+    </table>
+</div>
+
+
+

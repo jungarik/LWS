@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/site.css" rel="stylesheet" type="text/css" />
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDn8L33l42rxnZVIoetDX9szbkoXckKQZY&callback=initMap"
+            async defer></script>
+    <title>Knockout</title>
+</head>
+
+<body>
+        <table>
+            <thead><tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>User</th>
+                <th>Position</th>
+                <th></th> -->
+            </tr></thead>
+            <div data-bind="foreach: sensors">
+                <div>
+                    <div data-bind="text: sensorData().ssn"></div>
+                    <div data-bind="text: sensorData().name"></div>
+                    <div data-bind="text: fullName"></div>
+                    <div data-bind="text: position"></div>
+                    <div>
+                        <button data-bind="click: toLocation">To Location</button>
+                    </div>
+                    <!-- <td><a href="#" data-bind="click: $root.removeSeat">Remove</a></td> -->
+                </div>    
+            </div>
+        </table>
+
+
+        <h3 data-bind="visible: totalSurcharge() > 0">
+            Total surcharge: $<span data-bind="text: totalSurcharge().toFixed(2)"></span>
+        </h3> -->
+
+        <div id="map" style="height: 400px;"></div>
+
+        <script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+        <script type="text/javascript" src="knockout-3.4.0.js"></script>
+        <script type="text/javascript" src="google.map.js"></script>
+        <script type="text/javascript" src="app.js"></script>
+</body>
+<html>

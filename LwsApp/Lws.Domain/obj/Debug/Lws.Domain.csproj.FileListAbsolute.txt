@@ -1,0 +1,12 @@
+C:\projects\LWS\LwsApp\Lws.Domain\obj\Debug\Lws.Domain.csprojResolveAssemblyReference.cache
+C:\projects\LWS\LwsApp\Lws.Domain\bin\Debug\Lws.Domain.dll.config
+C:\projects\LWS\LwsApp\Lws.Domain\bin\Debug\Lws.Domain.dll
+C:\projects\LWS\LwsApp\Lws.Domain\bin\Debug\Lws.Domain.pdb
+C:\projects\LWS\LwsApp\Lws.Domain\bin\Debug\EntityFramework.dll
+C:\projects\LWS\LwsApp\Lws.Domain\bin\Debug\EntityFramework.SqlServer.dll
+C:\projects\LWS\LwsApp\Lws.Domain\bin\Debug\EntityFramework.xml
+C:\projects\LWS\LwsApp\Lws.Domain\bin\Debug\EntityFramework.SqlServer.xml
+C:\projects\LWS\LwsApp\Lws.Domain\bin\Debug\ru\EntityFramework.resources.dll
+C:\projects\LWS\LwsApp\Lws.Domain\obj\Debug\Lws.Domain.dll
+C:\projects\LWS\LwsApp\Lws.Domain\obj\Debug\Lws.Domain.pdb
+C:\projects\LWS\LwsApp\Lws.Domain\bin\Debug\ru\EntityFramework.SqlServer.resources.dll

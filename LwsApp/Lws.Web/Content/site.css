@@ -1,0 +1,103 @@
+﻿body {
+    background-color:white;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    font-family: Arial,'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color:#696969;
+    height:100%;
+}
+@font-face {
+    font-family: Destroy; /* Гарнитура шрифта */
+    src: url(../fonts/destroy_.ttf); /* Путь к файлу со шрифтом */
+   }
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+.cloud-1{
+    position:absolute;
+    left:0;
+    top:0px;
+}
+.cloud-2{
+    position:absolute;
+    left:25%;
+    top:0px;
+}
+.cloud-3{
+    position:absolute;
+    left:50%;
+    top:0px;
+}
+.cloud-4{
+    position:absolute;
+    right:0;
+    top:0px;
+}
+h1{
+  font-family: Destroy, 'Comic Sans MS', cursive;
+}
+.main-text{
+    width:100%;
+    color:yellow;
+    position:absolute;
+    top:80px;
+    text-align:center;
+    float:left;
+}
+.bg{
+    background-image: url(../../Content/images/bg3.png);
+    background-repeat: repeat;
+    position:fixed;
+    z-index:-999;
+    width:100%;
+    height:100%;
+    padding:0;
+    margin:0;
+    top:0;
+}
+.head{
+    width:100%;
+    height:150px;
+}
+.wrap-nav{
+}
+.main-content{
+}
+.row{
+    background-image: url(../../Content/images/bg-row-2.png);
+    background-repeat: repeat;
+    margin-bottom:10px;
+    margin-left:10px;
+    margin-right:10px; 
+    padding:5px;
+    border:1px solid #CCC; 
+    border-radius:5px; 
+    background-color:ghostwhite;
+}
+.text-row{
+    text-align:center;
+}
+.line-divde{
+    border:0.5px solid #CCC;
+    margin-bottom:5px;
+}
+#map { 
+    height: 400px; 
+    margin-bottom:10px;
+}

@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище LwsDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Sensors">
+    <Key>
+      <PropertyRef Name="Ssn" />
+    </Key>
+    <Property Name="Ssn" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="QrCode" Type="varbinary(max)" />
+    <Property Name="Name" Type="nvarchar" MaxLength="10" />
+    <Property Name="IsOptMeter1" Type="nvarchar" MaxLength="20" />
+    <Property Name="IsOptMeter2" Type="nvarchar" MaxLength="20" />
+    <Property Name="IsOptMeter3" Type="nvarchar" MaxLength="20" />
+    <Property Name="Latitude" Type="nvarchar" MaxLength="10" />
+    <Property Name="Longitude" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="States">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SensorSsn" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="LastTimeUpdate" Type="datetime" />
+    <Property Name="NextTimeUpdate" Type="datetime" />
+    <Property Name="VoltLevel" Type="decimal" Precision="4" Scale="2" />
+    <Property Name="CurrentBill" Type="decimal" Precision="4" Scale="2" />
+    <Property Name="Error" Type="int" />
+  </EntityType>
+  <EntityType Name="UserProfiles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" />
+    <Property Name="Country" Type="nvarchar" MaxLength="50" />
+    <Property Name="Region" Type="nvarchar" MaxLength="50" />
+    <Property Name="AddressFst" Type="nvarchar" MaxLength="50" />
+    <Property Name="AddressSec" Type="nvarchar" MaxLength="50" />
+    <Property Name="ZipCode" Type="tinyint" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="13" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Login" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Values">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ServerDate" Type="datetime" Nullable="false" />
+    <Property Name="SensorDate" Type="datetime" />
+    <Property Name="NumberOfNP" Type="int" />
+    <Property Name="NumberOfPP" Type="int" />
+    <Property Name="Meter1Value" Type="int" />
+    <Property Name="Meter2Value" Type="int" />
+    <Property Name="Meter3Value" Type="int" />
+    <Property Name="SensorSsn" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_SensorsToUsers_To_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Sensors" Type="Self.Sensors" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sensors">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_States_To_Sensors">
+    <End Role="Sensors" Type="Self.Sensors" Multiplicity="1" />
+    <End Role="States" Type="Self.States" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sensors">
+        <PropertyRef Name="Ssn" />
+      </Principal>
+      <Dependent Role="States">
+        <PropertyRef Name="SensorSsn" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserProfiles_To_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="UserProfiles" Type="Self.UserProfiles" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserProfiles">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Values_To_Sensors">
+    <End Role="Sensors" Type="Self.Sensors" Multiplicity="1" />
+    <End Role="Values" Type="Self.Values" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sensors">
+        <PropertyRef Name="Ssn" />
+      </Principal>
+      <Dependent Role="Values">
+        <PropertyRef Name="SensorSsn" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище LwsDBModelContainer">
+    <EntitySet Name="Sensors" EntityType="Self.Sensors" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="States" EntityType="Self.States" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserProfiles" EntityType="Self.UserProfiles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Values" EntityType="Self.Values" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_SensorsToUsers_To_Users" Association="Self.FK_SensorsToUsers_To_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Sensors" EntitySet="Sensors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_States_To_Sensors" Association="Self.FK_States_To_Sensors">
+      <End Role="Sensors" EntitySet="Sensors" />
+      <End Role="States" EntitySet="States" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserProfiles_To_Users" Association="Self.FK_UserProfiles_To_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserProfiles" EntitySet="UserProfiles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Values_To_Sensors" Association="Self.FK_Values_To_Sensors">
+      <End Role="Sensors" EntitySet="Sensors" />
+      <End Role="Values" EntitySet="Values" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

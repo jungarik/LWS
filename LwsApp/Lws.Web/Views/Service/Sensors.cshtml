@@ -1,0 +1,199 @@
+﻿@model IEnumerable<Lws.Domain.Sensor>
+
+@{
+    ViewBag.Title = "Sensors";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3>Active sensors in system: 4</h3>
+                </div>
+                <div class="line-divde"></div>
+                <div class="col-md-1 text-row" style="font-weight: bolder;">Value</div>
+                <div class="col-md-2 text-row" style="font-weight: bolder;">Id</div>
+                <div class="col-md-1 text-row" style="font-weight: bolder;">Name</div>
+                <div class="col-md-2 text-row" style="font-weight: bolder;">User</div>
+                <div class="col-md-2 text-row" style="font-weight: bolder;">Position</div>
+                <div class="col-md-4"></div>
+            </div>
+        </div>
+    <div class="container">
+        @foreach (var item in Model)
+        {
+            <div class="row">
+                <div class="col-md-1 text-row current-value" id="@item.Ssn">0</div>
+                <div class="col-md-2 text-row">
+                    @Html.DisplayFor(modelItem => item.Ssn)
+                </div>
+                <div class="col-md-1 text-row">
+                    @Html.DisplayFor(modelItem => item.Name)
+                </div>
+                <div class="col-md-2 text-row">
+                    @Html.DisplayFor(modelItem => item.User.UserProfile.FirstName)
+                    @Html.DisplayFor(modelItem => item.User.UserProfile.LastName)
+                </div>
+                <div class="col-md-2 text-row">
+                    @Html.DisplayFor(modelItem => item.Latitude),
+                    @Html.DisplayFor(modelItem => item.Longitude)
+                </div>
+                <div class="col-md-4 text-row" id="buttons">
+                    @*<button class="btn btn-default" id="@item.Ssn" type="submit">Details</button>*@
+                    <button class="btn btn-info" id="@item.Ssn" type="submit">Details</button>
+                    <button class="btn btn-warning" id="@item.Ssn" type="submit">Values</button>
+                    <button class="btn btn-success" id="@item.Ssn" type="submit">Location</button>
+                    <button class="btn btn-danger" id="@item.Ssn" type="submit">Edit</button>
+                </div>
+            </div>
+        <div id="data_@item.Ssn"></div>
+        }
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        flag = 0;
+        $('.btn-default').on('click', function (e) {
+            var id_click = e.target.id;
+            //flag = 0;
+            if (flag == 0) {
+                flag = 1;
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.Action("Details")/' + id_click,
+                    success: function (data) {
+                        // заменяем содержимое присланным частичным представлением
+                        $('#data_' + id_click).html(data);
+                    }
+                });
+            }
+            else {
+                $('#data_' + id_click).html(" ");
+                flag = 0;
+            }
+            return false;
+        })
+    })
+</script>
+<script type="text/javascript">
+    $(function () {
+        flag = 0;
+        $('.btn-warning').on('click', function (e) {
+            var id_click = e.target.id;
+            if (flag == 0) {
+                flag = 1;
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.Action("Values")/' + id_click,
+                    success: function (data) {
+                        // заменяем содержимое присланным частичным представлением
+                        $('#data_' + id_click).html(data);
+                    }
+                });
+            }
+            else {
+                $('#data_' + id_click).html(" ");
+                flag = 0;
+            }
+            return false;
+        })
+    })
+</script>
+<script type="text/javascript">
+    $(function () {
+        flag = 0;
+        $('.btn-info').on('click', function (e) {
+            var id_click = e.target.id;
+            if (flag == 0) {
+                flag = 1;
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.Action("States")/' + id_click,
+                    success: function (data) {
+                        // заменяем содержимое присланным частичным представлением
+                        $('#data_' + id_click).html(data);
+                    }
+                });
+            }
+            else {
+                $('#data_' + id_click).html(" ");
+                flag = 0;
+            }
+            return false;
+        })
+    })
+</script>
+<script type="text/javascript">
+    $(function () {
+        flag = 0;
+        $('.btn-success').on('click', function (e) {
+            var id_click = e.target.id;
+            if (flag == 0) {
+                flag = 1;
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.Action("Map")/' + id_click,
+                    success: function (data) {
+                        // заменяем содержимое присланным частичным представлением
+                        $('#data_' + id_click).html(data);
+                    }
+                });
+            }
+            else {
+                $('#data_' + id_click).html(" ");
+                flag = 0;
+            }
+            return false;
+        })
+    })
+</script>
+<script type="text/javascript">
+    $(function () {
+        flag = 0;
+        $('.btn-success').on('click', function (e) {
+            var id_click = e.target.id;
+            if (flag == 0) {
+                flag = 1;
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.Action("Map")/' + id_click,
+                    success: function (data) {
+                        // заменяем содержимое присланным частичным представлением
+                        $('#data_' + id_click).html(data);
+                    }
+                });
+            }
+            else {
+                $('#data_' + id_click).html(" ");
+                flag = 0;
+            }
+            return false;
+        })
+    })
+</script>
+@*<script type="text/javascript">
+    $(function () {
+        var currentValues = document.getElementsByClassName("current-value")
+        for (var i = 0; i < currentValues.lenght; i++){            
+            $('#' + currentValues[i].id).setInterval(function (e) {
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.Action("api/Values/GetLast")/' + currentValues[i].id,
+                    success: function (data) {
+                        // заменяем содержимое присланным частичным представлением
+                        currentValues[i].innerHtml(data);
+                    }
+                });
+                return false;
+            })
+        }
+
+    })
+</script>*@
+@*<script>
+    function SensorValue(value) {
+        var self = this;
+        self.value = ko.observable(value);
+    }
+</script>*@
