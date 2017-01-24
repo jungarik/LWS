@@ -79,8 +79,8 @@ h1{
 }
 .main-content{
 }
-.row{
-    background-image: url(../../Content/images/bg-row-2.png);
+.row-of-sensors-info{
+    background-image: url(../Content/images/bg-row-2.png);
     background-repeat: repeat;
     margin-bottom:10px;
     margin-left:10px;
@@ -90,6 +90,37 @@ h1{
     border-radius:5px; 
     background-color:ghostwhite;
 }
+.row-for-sensors-val{
+    background-color: white;
+    margin: 5px;
+    margin-left: 0px;
+    padding:5px;
+    border:1px solid #EEE; 
+    border-radius:5px; 
+    cursor: pointer;
+}
+.row-for-sensors-val:hover {
+    border: 1px solid lightblue;
+    background-color: cornflowerblue;
+    color: white;
+    border:1px solid cornflowerblue; 
+}
+.ctrl-panel{
+     background-image: url(../Content/images/bg-row-2.png);
+    background-repeat: repeat;
+    margin: 5px;
+    padding:5px;
+    border: 1px solid #CCC; 
+    border-radius:5px; 
+}
+.search-panel{
+    background-image: url(../Content/images/bg-row-2.png);
+    background-repeat: repeat;
+    margin: 5px;
+    padding:5px;
+    border: 1px solid #CCC; 
+    border-radius:5px; 
+}
 .text-row{
     text-align:center;
 }
@@ -98,6 +129,22 @@ h1{
     margin-bottom:5px;
 }
 #map { 
-    height: 400px; 
-    margin-bottom:10px;
+    height: 400px;
+    left: 5px;
+    margin-right: 0;
+}
+::-webkit-scrollbar
+{
+  width: 5px;  /* for vertical scrollbars */
+  height: 12px; /* for horizontal scrollbars */
+}
+
+::-webkit-scrollbar-track
+{
+  background: rgba(127, 127, 127, 1);
+}
+
+::-webkit-scrollbar-thumb
+{
+  background: rgba(255, 255, 255, 1);
 }

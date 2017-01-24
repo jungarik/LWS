@@ -75,3 +75,5 @@ C:\projects\LWS\LwsApp\Lws.Web\bin\System.Net.Http.Formatting.xml
 C:\projects\LWS\LwsApp\Lws.Web\bin\System.Web.Http.xml
 C:\projects\LWS\LwsApp\Lws.Web\bin\System.Web.Http.Cors.xml
 C:\projects\LWS\LwsApp\Lws.Web\bin\System.Web.Http.WebHost.xml
+C:\projects\LWS\LwsApp\Lws.Web\bin\AutoMapper.dll
+C:\projects\LWS\LwsApp\Lws.Web\bin\AutoMapper.xml

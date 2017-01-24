@@ -1,4 +1,7 @@
 --4
+USE LwsDB
+GO
+
 IF OBJECT_ID('dbo.UserProfiles', 'U') IS NOT NULL 
 	DROP TABLE dbo.UserProfiles;
 

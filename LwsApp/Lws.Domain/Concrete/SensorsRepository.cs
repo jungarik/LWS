@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Lws.Domain.Abstract;
+﻿using System.Linq;
 using System.Data.Entity;
+using Lws.Domain.Models;
+using Lws.Domain.Abstract;
 
 namespace Lws.Domain.Concrete
 {
@@ -22,9 +19,9 @@ namespace Lws.Domain.Concrete
             return db.Sensors;
         }
 
-        public Sensor Get(string ssn)
+        public Sensor Get(int id)
         {
-            return db.Sensors.Find(ssn);
+            return db.Sensors.Find(id);
         }
 
         public void Create(Sensor sensor)
@@ -37,9 +34,9 @@ namespace Lws.Domain.Concrete
             db.Entry(sensor).State = EntityState.Modified;
         }
 
-        public void Delete(string ssn)
+        public void Delete(int id)
         {
-            Sensor sensor = db.Sensors.Find(ssn);
+            Sensor sensor = db.Sensors.Find(id);
             if (sensor != null)
                 db.Sensors.Remove(sensor);
         }

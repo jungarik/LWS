@@ -16,13 +16,13 @@ namespace Lws.Web
 
             config.Routes.MapHttpRoute(
                 name: "LastValue",
-                routeTemplate: "api/{controller}/{action}/{ssn}"
+                routeTemplate: "api/{controller}/{action}/{id}"
             );
 
             config.Routes.MapHttpRoute(
                 name: "GetValues",
-                routeTemplate: "api/{controller}/{ssn}",
-                defaults: new { ssn = RouteParameter.Optional }
+                routeTemplate: "api/{controller}/{id}",
+                defaults: new { id = RouteParameter.Optional }
             );
 
         }

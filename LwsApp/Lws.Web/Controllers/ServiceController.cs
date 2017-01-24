@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
+using System.Data.Entity;
 using System.Web.Mvc;
-using Lws.Domain;
 using Lws.Domain.Concrete;
 using Lws.Domain.Abstract;
-using System.Data.Entity;
+using Lws.Domain.Models;
 
 
 namespace Lws.Web.Controllers
@@ -20,7 +17,7 @@ namespace Lws.Web.Controllers
         // GET: Sensor
         public ServiceController()
         {
-            db = new Domain.LwsDbContext();
+            db = new LwsDbContext();
             this.sensorsRepo = new SensorsRepository(db);
             this.valuesRepo = new ValuesRepository(db);
         }
@@ -33,30 +30,30 @@ namespace Lws.Web.Controllers
             var sensors = sensorsRepo.GetAll();
             return View(sensors);
         }
-        public ActionResult Details(string ssn)
+        public ActionResult Details(int id)
         {
-            Sensor sensor = sensorsRepo.Get(ssn);
+            Sensor sensor = sensorsRepo.Get(id);
             return PartialView("_Details", sensor);
         }
-        public ActionResult Values(string ssn)
+        public ActionResult Values(int id)
         {
-            var values = valuesRepo.GetAll().Where(value => value.SensorSsn == ssn);
+            var values = valuesRepo.GetAll().Where(value => value.Id == id);
             return PartialView("_Values", values);
         }
-        public ActionResult States(string ssn)
+        public ActionResult States(int id)
         {
-            var sensor = sensorsRepo.Get(ssn);
+            var sensor = sensorsRepo.Get(id);
             //var state = sensor.States.First();
             return PartialView("_States", sensor.States);
         }
-        public ActionResult Map(string ssn)
+        public ActionResult Map()
         {
-            var sensor = sensorsRepo.Get(ssn);
-            return PartialView("_Map", sensor);
+            //var sensor = sensorsRepo.Get(ssn);
+            return View("Map");
         }
-        public ActionResult Edit(string ssn)
+        public ActionResult Edit(int id)
         {
-            var sensor = sensorsRepo.Get(ssn);
+            var sensor = sensorsRepo.Get(id);
             return View();
         }
         //[HttpPost]

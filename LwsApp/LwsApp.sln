@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lws.Web", "Lws.Web\Lws.Web.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lws.Domain", "Lws.Domain\Lws.Domain.csproj", "{23CCC656-C18B-4C58-B0DA-DEBEB1E21162}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "LWS.Database", "LWS.Database\LWS.Database.sqlproj", "{867651DC-449B-493F-903F-4D0AB9988CDC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,12 @@ Global
 		{23CCC656-C18B-4C58-B0DA-DEBEB1E21162}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23CCC656-C18B-4C58-B0DA-DEBEB1E21162}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23CCC656-C18B-4C58-B0DA-DEBEB1E21162}.Release|Any CPU.Build.0 = Release|Any CPU
+		{867651DC-449B-493F-903F-4D0AB9988CDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{867651DC-449B-493F-903F-4D0AB9988CDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{867651DC-449B-493F-903F-4D0AB9988CDC}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{867651DC-449B-493F-903F-4D0AB9988CDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{867651DC-449B-493F-903F-4D0AB9988CDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{867651DC-449B-493F-903F-4D0AB9988CDC}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

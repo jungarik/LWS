@@ -11,14 +11,10 @@
     <script type="text/javascript" src="~/scripts/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="~/scripts/bootstrap.min.js"></script>
     <script type="text/javascript" src="~/scripts/knockout-3.4.0.js"></script>
+    @*<script type="text/javascript" src="~/scripts/google.map.js"></script>*@
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernize")
-    @*<style>
-            body {
-
-            }
-        </style>*@
 </head>
 <body>
     <div class="bg"></div>
@@ -46,8 +42,10 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
-                            <li><a href="">Sensors</a></li>
-                            <li><a href="">Map </a></li>
+                            <li><a href="@Url.Action("Sensors", "Service")">Sensors</a></li>
+                            <li>
+                                <a class="navbar-nav" href="@Url.Action("Map", "Service")">Map</a>
+                            </li>
                             <li><a href="">Lightning </a></li>
                         </ul>
                         <form class="navbar-form navbar-right">
@@ -67,7 +65,7 @@
 </body>
 </html>
 <script>
-    $(document).ready(function () {
+    @*$(document).ready(function () {
         $('.nav li a').click(function (e) {
 
             $('.nav li').removeClass('active');
@@ -79,5 +77,5 @@
             e.preventDefault();
             window.location.href = "@Url.Action("Sensors","Service")";
         });
-    });
+    });*@
 </script>

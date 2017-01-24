@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Lws.Domain.Abstract;
+using Lws.Domain.Models;
 
 namespace Lws.Domain.Concrete
 {

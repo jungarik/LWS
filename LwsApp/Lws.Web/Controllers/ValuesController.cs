@@ -5,10 +5,12 @@ using System.Data.Entity;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using Lws.Domain;
+using Lws.Domain.Models;
 using Lws.Domain.Concrete;
 using Lws.Domain.Abstract;
 using Lws.Web.Models;
+using AutoMapper;
+using Lws.Web.Models.Values;
 
 namespace Lws.Web.Controllers
 {
@@ -21,18 +23,20 @@ namespace Lws.Web.Controllers
         // GET: Sensor
         public ValuesController()
         {
-            db = new Domain.LwsDbContext();
+            db = new LwsDbContext();
             this.sensorsRepo = new SensorsRepository(db);
             this.valuesRepo = new ValuesRepository(db);
         }
-        public IEnumerable<Value> GetValues(string ssn)
+        public IEnumerable<ValueViewModel> GetValues(int id)
         {
-            IList<Value> values = new List<Value>();
-            values = valuesRepo.GetAll().Where(e => e.SensorSsn == ssn).ToList();
-            return values;
+            Mapper.Initialize(cfg => cfg.CreateMap<Value, ValueViewModel>());
+            //IList<Value> values = new List<Value>();
+            var values = valuesRepo.GetAll().Where(v => v.SensorId == id);
+            var viewModel = Mapper.Map<IEnumerable<Value>, List<ValueViewModel>>(values.ToList());
+            return viewModel;
         }
         [HttpPost]
-        public void PostValues(Value value)
+        public void PostValues([FromBody]Value value)
         {
             if (ModelState.IsValid)
             {

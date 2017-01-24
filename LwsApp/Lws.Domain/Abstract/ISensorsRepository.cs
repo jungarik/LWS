@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
+using Lws.Domain.Models;
 
 namespace Lws.Domain.Abstract
 {
@@ -10,9 +7,9 @@ namespace Lws.Domain.Abstract
     {
 
         IQueryable<Sensor> GetAll();
-        Sensor Get(string ssn);
+        Sensor Get(int id);
         void Create(Sensor item);
         void Update(Sensor item);
-        void Delete(string ssn);
+        void Delete(int id);
     }
 }

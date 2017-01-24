@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
+using Lws.Domain.Models;
 
 namespace Lws.Domain.Abstract
 {
     public interface IValuesRepository
     {
         IQueryable<Value> GetAll();
-        Value Get(string ssn);
+        Value Get(int id);
         void Create(Value item);
         void Update(Value item);
-        void Delete(string ssn);
+        void Delete(int id);
     }
 }

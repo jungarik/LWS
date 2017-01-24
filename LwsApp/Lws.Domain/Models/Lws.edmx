@@ -1,0 +1,388 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище Lws.Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Sensors">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="QrCode" Type="varbinary(max)" />
+          <Property Name="Name" Type="nvarchar" MaxLength="10" />
+          <Property Name="IsOptMeter1" Type="nvarchar" MaxLength="20" />
+          <Property Name="IsOptMeter2" Type="nvarchar" MaxLength="20" />
+          <Property Name="IsOptMeter3" Type="nvarchar" MaxLength="20" />
+          <Property Name="Latitude" Type="nvarchar" MaxLength="10" />
+          <Property Name="Longitude" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="States">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SensorId" Type="int" Nullable="false" />
+          <Property Name="LastTimeUpdate" Type="datetime" />
+          <Property Name="NextTimeUpdate" Type="datetime" />
+          <Property Name="VoltLevel" Type="decimal" Precision="4" Scale="2" />
+          <Property Name="CurrentBill" Type="decimal" Precision="4" Scale="2" />
+          <Property Name="Error" Type="int" />
+        </EntityType>
+        <EntityType Name="UserProfiles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" />
+          <Property Name="Region" Type="nvarchar" MaxLength="50" />
+          <Property Name="AddressFst" Type="nvarchar" MaxLength="50" />
+          <Property Name="AddressSec" Type="nvarchar" MaxLength="50" />
+          <Property Name="ZipCode" Type="tinyint" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="13" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Values">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ServerDate" Type="datetime" Nullable="false" />
+          <Property Name="SensorDate" Type="datetime" />
+          <Property Name="NumberOfNP" Type="int" />
+          <Property Name="NumberOfPP" Type="int" />
+          <Property Name="Meter1Value" Type="int" />
+          <Property Name="Meter2Value" Type="int" />
+          <Property Name="Meter3Value" Type="int" />
+          <Property Name="SensorId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_SensorsToUsers_To_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Sensors" Type="Self.Sensors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sensors">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_States_To_Sensors">
+          <End Role="Sensors" Type="Self.Sensors" Multiplicity="1" />
+          <End Role="States" Type="Self.States" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sensors">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="States">
+              <PropertyRef Name="SensorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserProfiles_To_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UserProfiles" Type="Self.UserProfiles" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserProfiles">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Values_To_Sensors">
+          <End Role="Sensors" Type="Self.Sensors" Multiplicity="1" />
+          <End Role="Values" Type="Self.Values" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sensors">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Values">
+              <PropertyRef Name="SensorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище LwsModelContainer">
+          <EntitySet Name="Sensors" EntityType="Self.Sensors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="States" EntityType="Self.States" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserProfiles" EntityType="Self.UserProfiles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Values" EntityType="Self.Values" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_SensorsToUsers_To_Users" Association="Self.FK_SensorsToUsers_To_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Sensors" EntitySet="Sensors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_States_To_Sensors" Association="Self.FK_States_To_Sensors">
+            <End Role="Sensors" EntitySet="Sensors" />
+            <End Role="States" EntitySet="States" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserProfiles_To_Users" Association="Self.FK_UserProfiles_To_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserProfiles" EntitySet="UserProfiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Values_To_Sensors" Association="Self.FK_Values_To_Sensors">
+            <End Role="Sensors" EntitySet="Sensors" />
+            <End Role="Values" EntitySet="Values" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Lws.Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Sensor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="QrCode" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Name" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="IsOptMeter1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="IsOptMeter2" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="IsOptMeter3" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Latitude" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Longitude" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="Self.FK_SensorsToUsers_To_Users" FromRole="Sensors" ToRole="Users" />
+          <NavigationProperty Name="States" Relationship="Self.FK_States_To_Sensors" FromRole="Sensors" ToRole="States" />
+          <NavigationProperty Name="Values" Relationship="Self.FK_Values_To_Sensors" FromRole="Sensors" ToRole="Values" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SensorId" Type="Int32" Nullable="false" />
+          <Property Name="LastTimeUpdate" Type="DateTime" Precision="3" />
+          <Property Name="NextTimeUpdate" Type="DateTime" Precision="3" />
+          <Property Name="VoltLevel" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="CurrentBill" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="Error" Type="Int32" />
+          <NavigationProperty Name="Sensor" Relationship="Self.FK_States_To_Sensors" FromRole="States" ToRole="Sensors" />
+        </EntityType>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Region" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddressFst" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddressSec" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ZipCode" Type="Byte" />
+          <Property Name="Phone" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="Self.FK_UserProfiles_To_Users" FromRole="UserProfiles" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Sensors" Relationship="Self.FK_SensorsToUsers_To_Users" FromRole="Users" ToRole="Sensors" />
+          <NavigationProperty Name="UserProfile" Relationship="Self.FK_UserProfiles_To_Users" FromRole="Users" ToRole="UserProfiles" />
+        </EntityType>
+        <EntityType Name="Value">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ServerDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SensorDate" Type="DateTime" Precision="3" />
+          <Property Name="NumberOfNP" Type="Int32" />
+          <Property Name="NumberOfPP" Type="Int32" />
+          <Property Name="Meter1Value" Type="Int32" />
+          <Property Name="Meter2Value" Type="Int32" />
+          <Property Name="Meter3Value" Type="Int32" />
+          <Property Name="SensorId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Sensor" Relationship="Self.FK_Values_To_Sensors" FromRole="Values" ToRole="Sensors" />
+        </EntityType>
+        <Association Name="FK_SensorsToUsers_To_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Sensors" Type="Self.Sensor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sensors">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_States_To_Sensors">
+          <End Role="Sensors" Type="Self.Sensor" Multiplicity="1" />
+          <End Role="States" Type="Self.State" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sensors">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="States">
+              <PropertyRef Name="SensorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Values_To_Sensors">
+          <End Role="Sensors" Type="Self.Sensor" Multiplicity="1" />
+          <End Role="Values" Type="Self.Value" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sensors">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Values">
+              <PropertyRef Name="SensorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserProfiles_To_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="UserProfiles" Type="Self.UserProfile" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserProfiles">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LwsDbContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Sensors" EntityType="Self.Sensor" />
+          <EntitySet Name="States" EntityType="Self.State" />
+          <EntitySet Name="UserProfiles" EntityType="Self.UserProfile" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="Values" EntityType="Self.Value" />
+          <AssociationSet Name="FK_SensorsToUsers_To_Users" Association="Self.FK_SensorsToUsers_To_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Sensors" EntitySet="Sensors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_States_To_Sensors" Association="Self.FK_States_To_Sensors">
+            <End Role="Sensors" EntitySet="Sensors" />
+            <End Role="States" EntitySet="States" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Values_To_Sensors" Association="Self.FK_Values_To_Sensors">
+            <End Role="Sensors" EntitySet="Sensors" />
+            <End Role="Values" EntitySet="Values" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserProfiles_To_Users" Association="Self.FK_UserProfiles_To_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserProfiles" EntitySet="UserProfiles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище LwsModelContainer" CdmEntityContainer="LwsDbContext">
+          <EntitySetMapping Name="Sensors">
+            <EntityTypeMapping TypeName="Lws.Model.Sensor">
+              <MappingFragment StoreEntitySet="Sensors">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="QrCode" ColumnName="QrCode" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IsOptMeter1" ColumnName="IsOptMeter1" />
+                <ScalarProperty Name="IsOptMeter2" ColumnName="IsOptMeter2" />
+                <ScalarProperty Name="IsOptMeter3" ColumnName="IsOptMeter3" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="States">
+            <EntityTypeMapping TypeName="Lws.Model.State">
+              <MappingFragment StoreEntitySet="States">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SensorId" ColumnName="SensorId" />
+                <ScalarProperty Name="LastTimeUpdate" ColumnName="LastTimeUpdate" />
+                <ScalarProperty Name="NextTimeUpdate" ColumnName="NextTimeUpdate" />
+                <ScalarProperty Name="VoltLevel" ColumnName="VoltLevel" />
+                <ScalarProperty Name="CurrentBill" ColumnName="CurrentBill" />
+                <ScalarProperty Name="Error" ColumnName="Error" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserProfiles">
+            <EntityTypeMapping TypeName="Lws.Model.UserProfile">
+              <MappingFragment StoreEntitySet="UserProfiles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="AddressFst" ColumnName="AddressFst" />
+                <ScalarProperty Name="AddressSec" ColumnName="AddressSec" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="Lws.Model.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Values">
+            <EntityTypeMapping TypeName="Lws.Model.Value">
+              <MappingFragment StoreEntitySet="Values">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ServerDate" ColumnName="ServerDate" />
+                <ScalarProperty Name="SensorDate" ColumnName="SensorDate" />
+                <ScalarProperty Name="NumberOfNP" ColumnName="NumberOfNP" />
+                <ScalarProperty Name="NumberOfPP" ColumnName="NumberOfPP" />
+                <ScalarProperty Name="Meter1Value" ColumnName="Meter1Value" />
+                <ScalarProperty Name="Meter2Value" ColumnName="Meter2Value" />
+                <ScalarProperty Name="Meter3Value" ColumnName="Meter3Value" />
+                <ScalarProperty Name="SensorId" ColumnName="SensorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

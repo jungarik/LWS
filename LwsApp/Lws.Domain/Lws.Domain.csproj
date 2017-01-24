@@ -59,46 +59,46 @@
     <Compile Include="Concrete\SensorsRepository.cs" />
     <Compile Include="Concrete\UoW.cs" />
     <Compile Include="Concrete\ValuesRepository.cs" />
-    <Compile Include="LwsModel.Context.cs">
+    <Compile Include="Models\Lws.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LwsModel.Context.tt</DependentUpon>
+      <DependentUpon>Lws.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="LwsModel.cs">
+    <Compile Include="Models\Lws.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LwsModel.tt</DependentUpon>
+      <DependentUpon>Lws.tt</DependentUpon>
     </Compile>
-    <Compile Include="LwsModel.Designer.cs">
+    <Compile Include="Models\Lws.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LwsModel.edmx</DependentUpon>
+      <DependentUpon>Lws.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sensor.cs">
-      <DependentUpon>LwsModel.tt</DependentUpon>
+    <Compile Include="Models\Sensor.cs">
+      <DependentUpon>Lws.tt</DependentUpon>
     </Compile>
-    <Compile Include="State.cs">
-      <DependentUpon>LwsModel.tt</DependentUpon>
+    <Compile Include="Models\State.cs">
+      <DependentUpon>Lws.tt</DependentUpon>
     </Compile>
-    <Compile Include="User.cs">
-      <DependentUpon>LwsModel.tt</DependentUpon>
+    <Compile Include="Models\User.cs">
+      <DependentUpon>Lws.tt</DependentUpon>
     </Compile>
-    <Compile Include="UserProfile.cs">
-      <DependentUpon>LwsModel.tt</DependentUpon>
+    <Compile Include="Models\UserProfile.cs">
+      <DependentUpon>Lws.tt</DependentUpon>
     </Compile>
-    <Compile Include="Value.cs">
-      <DependentUpon>LwsModel.tt</DependentUpon>
+    <Compile Include="Models\Value.cs">
+      <DependentUpon>Lws.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <EntityDeploy Include="LwsModel.edmx">
+    <EntityDeploy Include="Models\Lws.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>LwsModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>Lws.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="LwsModel.edmx.diagram">
-      <DependentUpon>LwsModel.edmx</DependentUpon>
+    <None Include="Models\Lws.edmx.diagram">
+      <DependentUpon>Lws.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
@@ -106,15 +106,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="LwsModel.Context.tt">
+    <Content Include="Models\Lws.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>LwsModel.edmx</DependentUpon>
-      <LastGenOutput>LwsModel.Context.cs</LastGenOutput>
+      <DependentUpon>Lws.edmx</DependentUpon>
+      <LastGenOutput>Lws.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="LwsModel.tt">
+    <Content Include="Models\Lws.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>LwsModel.edmx</DependentUpon>
-      <LastGenOutput>LwsModel.cs</LastGenOutput>
+      <DependentUpon>Lws.edmx</DependentUpon>
+      <LastGenOutput>Lws.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

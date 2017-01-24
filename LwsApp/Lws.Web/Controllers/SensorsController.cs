@@ -8,6 +8,7 @@ using System.Data.Entity;
 using Lws.Domain;
 using Lws.Domain.Concrete;
 using Lws.Domain.Abstract;
+using Lws.Domain.Models;
 
 namespace Lws.Web.Controllers
 {
@@ -17,7 +18,7 @@ namespace Lws.Web.Controllers
         LwsDbContext db;
         public SensorsController()
         {
-            db = new Domain.LwsDbContext();
+            db = new LwsDbContext();
             this.sensorsRepo = new SensorsRepository(db);
         }
         public IEnumerable<Sensor> GetSensors()

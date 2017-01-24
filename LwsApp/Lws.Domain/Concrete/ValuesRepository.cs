@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.Entity;
 using Lws.Domain.Abstract;
+using Lws.Domain.Models;
 
 namespace Lws.Domain.Concrete
 {
-    public class ValuesRepository:IValuesRepository
+    public class ValuesRepository :  IValuesRepository
     {
         private LwsDbContext db;
 
@@ -22,9 +20,9 @@ namespace Lws.Domain.Concrete
             return db.Values;
         }
         //ошибка может быть несколько значений
-        public Value Get(string ssn)
+        public Value Get(int id)
         {
-            return db.Values.Find(ssn);
+            return db.Values.Find(id);
         }
 
         public void Create(Value value)
@@ -37,9 +35,9 @@ namespace Lws.Domain.Concrete
             db.Entry(value).State = EntityState.Modified;
         }
 
-        public void Delete(string ssn)
+        public void Delete(int id)
         {
-            Value value = db.Values.Find(ssn);
+            Value value = db.Values.Find(id);
             if (value != null)
                 db.Values.Remove(value);
         }
